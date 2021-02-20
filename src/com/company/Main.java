@@ -3,19 +3,22 @@ package com.company;
 public class Main {
 
     public static void main(String[] args) {
+        String phoneNumber = "+5 930 444 55 44";
+        checkNumber(phoneNumber);
+    }
+
+    public static void checkNumber(String phoneNumber){
         String[] myResult = new String[2];
-        String phoneNumber = " +7 (921) 221 37 46 ";
         String phoneChanges = "";
         phoneNumber = phoneNumber.strip();
         boolean isNotChanged = true;
         if (phoneNumber.startsWith("+7")){
-            phoneNumber = phoneNumber.substring(1);
-            phoneNumber = phoneNumber.replaceFirst("7","8");
+            phoneNumber = phoneNumber.replaceFirst("\\+7","8");
             phoneChanges = phoneChanges.concat("Замена +7 на 8; ");
             isNotChanged = false;
         }
         if (phoneNumber.contains(" ") || phoneNumber.contains("(") || phoneNumber.contains(")")){
-            phoneNumber = phoneNumber.replaceAll("\\D", "");
+            phoneNumber = phoneNumber.replaceAll("[\\s)(]", "");
             phoneChanges = phoneChanges.concat("В номере есть пробелы и/или скобки; ");
             isNotChanged = false;
         }
